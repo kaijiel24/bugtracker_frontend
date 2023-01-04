@@ -122,6 +122,40 @@ const router = createRouter({
                     component: () => import('@/views/utilities/Icons.vue')
                 },
                 {
+                    path: '/pages/manageusers',
+                    name: 'manageusers',
+                    component: () => import('@/views/pages/ManageUsers.vue')
+                },
+                {
+                    path: '/pages/myprojects',
+                    name: 'myprojects',
+                    component: () => import('@/views/pages/MyProjects.vue')
+                },
+                {
+                    path: '/pages/project/:id',
+                    name: 'project',
+                    props: (route) => {
+                        const id = Number.parseInt(route.params.id);
+                        return { id }
+                    },
+                    component: () => import('@/views/pages/Project.vue')
+                },
+                {
+                    path: '/pages/createproject',
+                    name: 'createproject',
+                    component: () => import('@/views/pages/CreateProject.vue')
+                },
+                {
+                    path: '/pages/mytickets',
+                    name: 'mytickets',
+                    component: () => import('@/views/pages/MyTickets.vue')
+                },
+                {
+                    path: '/pages/createticket',
+                    name: 'createticket',
+                    component: () => import('@/views/pages/CreateTicket.vue')
+                },
+                {
                     path: '/pages/timeline',
                     name: 'timeline',
                     component: () => import('@/views/pages/Timeline.vue')
