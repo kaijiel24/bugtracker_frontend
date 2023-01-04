@@ -1,0 +1,67 @@
+{ 
+    "data": [
+    {
+        "id": 1,
+        "name": "Thomas Frank",
+        "username": "t.frank",
+        "role": "Admin",
+        "email": "t.frank@gmail.com"
+    },
+    {
+        "id": 2,
+        "name": "Zhang Wen Liu",
+        "username": "zw.liu",
+        "role": "Developer",
+        "email": "zwliu29@gmail.com"
+    },
+    {
+        "id": 3,
+        "name": "Maria Tucker",
+        "username": "mtucker333",
+        "role": "Developer",
+        "email": "mtucker@gmail.com"
+    },
+    {
+        "id": 4,
+        "name": "Rosely Frank",
+        "username": "rfrank",
+        "role": "Developer",
+        "email": "rosfrank@gmail.com"
+    },
+    {
+        "id": 5,
+        "name": "Sergio Hanna",
+        "username": "sergioh",
+        "role": "ProjectMangager",
+        "email": "sergiohh@gmail.com"
+    },
+    {
+        "id": 6,
+        "name": "Lawerence Carpenter",
+        "username": "lcar",
+        "role": "Developer",
+        "email": "lcarpenter@hotmail.com"
+    },
+    {
+        "id": 7,
+        "name": "Rashad Schneider",
+        "username": "rashadSR",
+        "role": "Developer",
+        "email": "rashsad.sr@yahoo.com"
+    },
+    {
+        "id": 8,
+        "name": "Colin Wang",
+        "username": "wangcolin",
+        "role": "ProjectManager",
+        "email": "colinwang@gmail.com"
+    },
+    {
+        "id": 9,
+        "name": "Lee Hwang Gyeon",
+        "username": "leewg",
+        "role": "Developer",
+        "email": "leehwanggyeon@gmail.com"
+    }
+    ]
+}

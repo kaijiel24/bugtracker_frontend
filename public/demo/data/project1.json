@@ -1,0 +1,80 @@
+{
+    "id": 1,
+    "name": "Bug Tracker System",
+    "description": "Issues for Admin to handle",
+    "projectManager": "Thomas Frank",
+    "status": "production",
+    "activeTickets": 1,
+    "memberCount": 5,
+    "members": [
+        {
+            "id": 1,
+            "name": "Thomas Frank",
+            "username": "t.frank",
+            "role": "admin",
+            "email": "t.frank@gmail.com"
+        },
+        {
+            "id": 2,
+            "name": "Zhang Wen Liu",
+            "username": "zw.liu",
+            "role": "developer",
+            "email": "zwliu29@gmail.com"
+        },
+        {
+            "id": 3,
+            "name": "Maria Tucker",
+            "username": "mtucker333",
+            "role": "developer",
+            "email": "mtucker@gmail.com"
+        },
+        {
+            "id": 4,
+            "name": "Rosely Frank",
+            "username": "rfrank",
+            "role": "developer",
+            "email": "rosfrank@gmail.com"
+        },
+    {
+        "id": 8,
+        "name": "Colin Wang",
+        "username": "wangcolin",
+        "role": "project manager",
+        "email": "colinwang@gmail.com"
+    }
+    ],
+    "tickets" : [
+        {
+            "id": 1,
+            "name": "Project Page",
+            "submitter": {
+                "id": 8,
+                "name": "Colin Wang"
+            },
+            "assignee": {
+                "id": 3,
+                "name": "Maria Tucker"
+            },
+            "status": "in progress",
+            "priority" : "high",
+            "dateCreated": "2022-01-02",
+            "dateUpdated": "2022-01-02"
+        },
+        {
+            "id": 2,
+            "name": "Ticket List",
+            "submitter": {
+                "id": 8,
+                "name": "Colin Wang"
+            },
+            "assignee": {
+                "id": 2,
+                "name": "Zhang Wen Liu"
+            },
+            "status": "open",
+            "priority" : "medium",
+            "dateCreated": "2022-01-02",
+            "dateUpdated": "2022-01-02"
+        }
+    ]
+}

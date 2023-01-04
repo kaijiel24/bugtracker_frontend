@@ -1,0 +1,55 @@
+{ 
+    "data": [
+    {
+        "id": 1,
+        "name": "Bug Tracker System",
+        "description": "Issues for Admin to handle",
+        "projectManager": "Thomas Frank",
+        "members": [
+            "Zhang Wen Liu",
+            "Maria Tucker",
+            "Rosely Frank"
+        ],
+        "status": "production",
+        "activeTickets": 1
+    },
+    {
+        "id": 2,
+        "name": "User Activity System",
+        "description": "User activity management",
+        "projectManager": "Sergio Hanna",
+        "members": [
+            "Zhang Wen Liu",
+            "Rosely Frank"
+        ],
+        "status": "production",
+        "activeTickets": 2
+    },
+    {
+        "id": 3,
+        "name": "Billing System",
+        "description": "Bill management",
+        "projectManager": "Sergio Hanna",
+        "members": [
+            "Zhang Wen Liu",
+            "Lawrence Carpenter",
+            7
+        ],
+        "status": "development",
+        "activeTickets": 2
+    },
+    {
+        "id": 4,
+        "name": "AI Development",
+        "description": "Development of AI for business function",
+        "projectManager": "Colin Wang",
+        "members": [
+            "Maria Tucker",
+            "Lawrence Carpenter",
+            "Lee Hwang Geyon"
+        ],
+        "status": "depreciated",
+        "activeTickets": 2
+    }
+    ]
+}
