@@ -10,18 +10,22 @@
     letter-spacing: .3px;
 }
 
+.large-badge {
+    font-size: 18px;
+}
+
 .role-badge {
-    &.status-developer {
+    &.role-dev {
         background: #B3E5FC;
         color: #23547B;
     }
 
-    &.status-admin {
+    &.role-admin {
         background: #ECCFFF;
         color: #694382;
     }
 
-    &.status-project-manager {
+    &.role-pm {
         background: #FFD8B2;
         color: #805B36;
     }
@@ -55,22 +59,22 @@
         color: #C63737;
     }
 
-    &.status-in-progress {
+    &.status-wip {
         background: #FEEDAF;
         color: #8A5340;
     }
 }
 
 .ticket-priority-badge {
-    &.status-high {
+    &.priority-high {
         background: #FFCDD2;
         color: #C63737;
     }
-    &.status-medium {
+    &.priority-medium {
         background: #FFD8B2;
         color: #805B36;
     }
-    &.status-low {
+    &.priority-low {
         background: #FEEDAF;
         color: #8A5340;
     }

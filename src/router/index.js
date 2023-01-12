@@ -151,6 +151,15 @@ const router = createRouter({
                     component: () => import('@/views/pages/MyTickets.vue')
                 },
                 {
+                    path: '/pages/ticket/:id',
+                    name: 'ticket',
+                    props: (route) => {
+                        const id = Number.parseInt(route.params.id);
+                        return { id }
+                    },
+                    component: () => import('@/views/pages/Ticket.vue')
+                },
+                {
                     path: '/pages/createticket',
                     name: 'createticket',
                     component: () => import('@/views/pages/CreateTicket.vue')

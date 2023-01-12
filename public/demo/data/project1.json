@@ -18,28 +18,28 @@
             "id": 2,
             "name": "Zhang Wen Liu",
             "username": "zw.liu",
-            "role": "developer",
+            "role": "dev",
             "email": "zwliu29@gmail.com"
         },
         {
             "id": 3,
             "name": "Maria Tucker",
             "username": "mtucker333",
-            "role": "developer",
+            "role": "dev",
             "email": "mtucker@gmail.com"
         },
         {
             "id": 4,
             "name": "Rosely Frank",
             "username": "rfrank",
-            "role": "developer",
+            "role": "dev",
             "email": "rosfrank@gmail.com"
         },
     {
         "id": 8,
         "name": "Colin Wang",
         "username": "wangcolin",
-        "role": "project manager",
+        "role": "pm",
         "email": "colinwang@gmail.com"
     }
     ],
@@ -55,7 +55,7 @@
                 "id": 3,
                 "name": "Maria Tucker"
             },
-            "status": "in progress",
+            "status": "wip",
             "priority" : "high",
             "dateCreated": "2022-01-02",
             "dateUpdated": "2022-01-02"

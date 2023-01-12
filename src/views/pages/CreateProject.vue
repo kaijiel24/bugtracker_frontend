@@ -2,11 +2,11 @@
 import UsersService from '@/service/UsersService';
 import { ref, onBeforeMount } from 'vue';
 
-const name = "";
-const description = "";
-const status = "Production";
+const name = ref("");
+const description = ref("");
+const status = ref("dev");
 const members = ref(null);
-const statusButtonOptions = ref([{ name: 'Development' }, { name: 'Production' }]);
+const statusButtonOptions = ref([{ name: 'Development', value: 'dev' }, { name: 'Production', value: 'prod'}]);
 const membersSelectOptions = ref(null);
 const usersService = new UsersService();
 // TODO Replace user id when logged in
@@ -37,19 +37,19 @@ onBeforeMount(() => {
                 <div class="p-fluid formgrid grid">
                     <div class="field col-12 md:col-6">
                         <label for="name">Project Name</label>
-                        <InputText id="name" type="text" />
+                        <InputText v-model="name" id="name" type="text" />
                     </div>
 
                     <div class="field col-12 md:col-6">
-                        <h5>Status</h5>
-                        <SelectButton v-model="status" :options="statusButtonOptions" optionLabel="name" optionValue="name"/>
+                        <label for="name">Status</label>
+                        <SelectButton v-model="status" :options="statusButtonOptions" optionLabel="name" optionValue="value"/>
                     </div>
                     <div class="field col-12">
                         <label for="description">Description</label>
-                        <Textarea id="description" rows="4" />
+                        <Textarea v-model="description" id="description" rows="4" />
                     </div>
                     <div class="field col-12">
-                        <h5>Members</h5>
+                        <label for="name">Members</label>
                         <MultiSelect v-model="members" :options="membersSelectOptions" optionLabel="name" placeholder="Select Members" :filter="true" dataKey="id">
                             <template #value="slotProps">
                                 <div class="inline-flex align-items-center py-1 px-2 bg-primary text-primary border-round mr-2" v-for="option of slotProps.value">

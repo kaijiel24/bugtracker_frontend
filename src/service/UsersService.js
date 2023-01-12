@@ -15,4 +15,9 @@ export default class UsersService {
                 return d;
             });
     }
+    async getUsers() {
+        return fetch(contextPath + 'demo/data/users.json')
+            .then((res) => res.json())
+            .then((d) => d.data)
+    }
 };
