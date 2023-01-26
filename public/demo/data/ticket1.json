@@ -1,0 +1,50 @@
+{
+    "id": 1,
+    "name": "Project Page",
+    "submitter": {
+        "id": 8,
+        "name": "Colin Wang"
+    },
+    "assignee": {
+        "id": 3,
+        "name": "Maria Tucker"
+    },
+    "status": "wip",
+    "priority" : "high",
+    "dateCreated": "1673211400",
+    "dateUpdated": "1673219800",
+    "project": {
+        "id": 1,
+        "name": "Bug Tracker System"
+    },
+    "comments": [
+        {
+            "id": 1,
+            "commentor": {
+                "id": 3,
+                "name": "Maria Tucker"
+            },
+            "text": "Could you specify what you would like to see in the project page",
+            "dateCreated": "1673211400"
+        },
+        {
+            "id": 2,
+            "commentor": {
+                "id": 8,
+                "name": "Colin Wang"
+            },
+            "text": "I would like to see the projects that the user is a part of and its status",
+            "dateCreated": "1673215200"
+        },
+        {
+            "id": 1,
+            "commentor": {
+                "id": 3,
+                "name": "Maria Tucker"
+            },
+            "text": "Noted. Done",
+            "dateCreated": "1673247300"
+        }
+
+    ]
+}

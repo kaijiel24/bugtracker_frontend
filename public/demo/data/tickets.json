@@ -1,0 +1,64 @@
+{ 
+    "data" : [
+        {
+            "id": 1,
+            "name": "Project Page",
+            "submitter": {
+                "id": 8,
+                "name": "Colin Wang"
+            },
+            "assignee": {
+                "id": 3,
+                "name": "Maria Tucker"
+            },
+            "status": "wip",
+            "priority" : "high",
+            "dateCreated": "2022-01-02",
+            "dateUpdated": "2022-01-02",
+            "project": {
+                "id": 1,
+                "name": "Bug Tracker System"
+            }
+        },
+        {
+            "id": 2,
+            "name": "Ticket List",
+            "submitter": {
+                "id": 8,
+                "name": "Colin Wang"
+            },
+            "assignee": {
+                "id": 2,
+                "name": "Zhang Wen Liu"
+            },
+            "status": "open",
+            "priority" : "medium",
+            "dateCreated": "2022-01-02",
+            "dateUpdated": "2022-01-02",
+            "project": {
+                "id": 2,
+                "name": "Bug Tracker System"
+            }
+        },
+        {
+            "id": 3,
+            "name": "User Clicks",
+            "submitter": {
+                "id": 7,
+                "name": "Rashad Schneider"
+            },
+            "assignee": {
+                "id": 9,
+                "name": "Lee Hwang Gyeon"
+            },
+            "status": "open",
+            "priority" : "low",
+            "dateCreated": "2022-01-08",
+            "dateUpdated": "2022-01-09",
+            "project": {
+                "id": 3,
+                "name": "User Activity System"
+            }
+        }
+    ]
+}
