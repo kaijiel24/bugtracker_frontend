@@ -2,27 +2,31 @@
 import { FilterMatchMode, FilterOperator } from 'primevue/api';
 import ProjectStatusBadge from './badge/ProjectStatusBadge.vue';
 import { ref, onBeforeMount } from 'vue';
+import { useRouter } from 'vue-router';
 const props = defineProps({
     rows: Number,
-    projects: Array
+    projects: Array,
+    loading: Bool
 })
 
 const filters = ref(null);
-const loading = ref(true);
 const statuses = ref(['Development', 'Production', 'Depreciated']);
+
+const router = useRouter();
 
 const initFilters = () => {
     filters.value = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+        'projectManager.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
         status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
     };
-    loading.value = false;
 };
 
 const rowClick = (e) => {
     console.log(e.data.id)
-    window.location.href = "#/pages/project/" + e.data.id;
+    router.push({ name: 'project', params: { id: e.data.id } })
+
 }
 
 onBeforeMount(() => {
@@ -35,8 +39,8 @@ onBeforeMount(() => {
         <h2>Projects</h2>
         <DataTable :value="props.projects" :paginator="true" class="p-datatable-gridlines" :rows="props.rows"
             dataKey="id" :rowHover="true" @row-click="rowClick($event)" v-model:filters="filters" filterDisplay="menu"
-            :loading="loading" :filters="filters" responsiveLayout="scroll"
-            :globalFilterField="['name', 'projectManager', 'status']">
+            :loading="props.loading" :filters="filters" responsiveLayout="scroll"
+            :globalFilterField="['name', 'projectManager.name', 'status']">
             <template #header>
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <Button type="button" icon="pi pi-filter-slash" label="Clear" class="p-button-outlined mb-2"
@@ -58,11 +62,11 @@ onBeforeMount(() => {
                         placeholder="Search by name" />
                 </template>
             </Column>
-            <Column header="Project Manager" filterField="projectManager" :showFilterMatchModes="false"
+            <Column header="Project Manager" filterField="projectManager.name" :showFilterMatchModes="false"
                 :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
                 <template #body="{ data }">
                     <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{
-                        data.projectManager
+                        data.projectManager.name
                     }}</span>
                 </template>
                 <template #filter="{ filterModel }">

@@ -14,6 +14,8 @@ const ticket = ref(null);
 const ticketsService = new TicketsService();
 const timeService = new TimeService();
 
+const newComment = ref('')
+
 onBeforeMount(() => {
     ticketsService.getTicket(props.id).then((data) => (ticket.value = data));
 });

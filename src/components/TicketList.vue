@@ -3,6 +3,7 @@ import { FilterMatchMode, FilterOperator } from 'primevue/api';
 import { ref, onBeforeMount } from 'vue';
 import TicketStatusBadge from './badge/TicketStatusBadge.vue';
 import TicketPriorityBadge from './badge/TicketPriorityBadge.vue';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
     rows: Number,
@@ -12,6 +13,8 @@ const props = defineProps({
 
 const filters = ref(null);
 const loading = ref(true);
+
+const router = useRouter();
 
 const initFilters = () => {
     filters.value = {
@@ -42,7 +45,7 @@ const formatDate = (value) => {
 }
 const rowClick = (e) => {
     console.log(e.data.id)
-    window.location.href = "#/pages/ticket/" + e.data.id;
+    router.push({ name: 'ticket', params: { id: e.data.id } })
 }
 
 onBeforeMount(() => {

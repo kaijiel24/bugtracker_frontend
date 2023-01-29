@@ -2,13 +2,14 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useLayout } from '@/layout/composables/layout';
 import { useRouter } from 'vue-router';
+import useAuthStore from '@/stores/authStore';
 
 const { layoutConfig, onMenuToggle, contextPath } = useLayout();
 
 const outsideClickListener = ref(null);
 const topbarMenuActive = ref(false);
 const router = useRouter();
-
+const authStore = useAuthStore();
 onMounted(() => {
     bindOutsideClickListener();
 });
@@ -24,9 +25,10 @@ const logoUrl = computed(() => {
 const onTopBarMenuButton = () => {
     topbarMenuActive.value = !topbarMenuActive.value;
 };
-const onSettingsClick = () => {
+const onLogoutClick = () => {
     topbarMenuActive.value = false;
-    router.push('/documentation');
+    authStore.setAuthUser(null);
+    router.push({ name: 'login' });
 };
 const topbarMenuClasses = computed(() => {
     return {
@@ -84,12 +86,14 @@ const isOutsideClicked = (event) => {
                 <i class="pi pi-user"></i>
                 <span>Profile</span>
             </button>
-            <button @click="onSettingsClick()" class="p-link layout-topbar-button">
-                <i class="pi pi-cog"></i>
+            <button @click="onLogoutClick()" class="p-link layout-topbar-button">
+                <i class="pi pi-sign-out"></i>
                 <span>Settings</span>
             </button>
         </div>
     </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

@@ -21,8 +21,7 @@ const initFilters = () => {
     loading.value = false;
 }
 
-const rowClick = () => {
-}
+const rowClick = () => { }
 onBeforeMount(() => {
     initFilters();
 });

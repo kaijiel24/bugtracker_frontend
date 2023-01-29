@@ -1,9 +1,10 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
+import checkAuth from '@/router/middleware'
 import AppLayout from '@/layout/AppLayout.vue';
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes: [
+    history: createWebHistory(),
+       routes: [
         {
             path: '/',
             component: AppLayout,
@@ -129,7 +130,7 @@ const router = createRouter({
                 {
                     path: '/pages/myprojects',
                     name: 'myprojects',
-                    component: () => import('@/views/pages/MyProjects.vue')
+                    component: () => import('@/views/pages/MyProjects.vue'),
                 },
                 {
                     path: '/pages/project/:id',
@@ -214,5 +215,7 @@ const router = createRouter({
         }
     ]
 });
+
+router.beforeEach(checkAuth)
 
 export default router;
