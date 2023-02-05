@@ -1,4 +1,5 @@
 import axios from 'axios';
+import useAuthStore from '@/stores/authStore';
 
 const BASE_URL = 'http://localhost:8080/';
 
@@ -9,30 +10,26 @@ export const authAxios = axios.create({
 
 authAxios.defaults.headers.common['Content-Type'] = 'application/json';
 
-authAxios.interceptors.response.use(
-    (response) => {
-        return response;
-    },
-    async (error) => {
-        console.log("axios error")
-        const originalRequest = error.config;
-        const errMessage = error.response.data.message;
-        if (errMessage.includes('not logged in') && !originalRequest._retry) {
-            originalRequest._retry = true;
-            await refreshAccessTokenFn();
-            return authAxios(originalRequest);
+authAxios.interceptors.request.use(
+    (config) => {
+        const authStore = useAuthStore()
+        const user = authStore.getAuthUser()
+
+        if (user) {
+            config.headers.Authorization = 'Bearer ' + user.token;
         }
-        return Promise.reject(error);
+
+        return config;
     }
 );
 
 
+
 export const refreshAccessTokenFn = async () => {
-    const response = await authAxios.get('auth/refresh');
-    return response.data;
+    return authAxios.get('auth/refresh');
 };
 
-export const loginFn = (user) => {
+export const loginFn = async (user) => {
     return authAxios.post('auth/login', user);
 };
 

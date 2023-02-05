@@ -8,8 +8,9 @@ const { layoutConfig, onMenuToggle, contextPath } = useLayout();
 
 const outsideClickListener = ref(null);
 const topbarMenuActive = ref(false);
-const router = useRouter();
 const authStore = useAuthStore();
+const router = useRouter();
+
 onMounted(() => {
     bindOutsideClickListener();
 });

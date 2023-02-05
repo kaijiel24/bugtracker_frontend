@@ -1,23 +1,34 @@
-const contextPath = import.meta.env.BASE_URL;
+import { authAxios } from "../api/authApi";
 
 export default class UsersService {
-    async getUsersExcept(id) {
-        return fetch(contextPath + 'demo/data/users.json')
-            .then((res) => res.json())
-            .then((d) => d.data)
-            .then((d) => {
-                var i = d.length;
-                while (i--) {
-                    if (d[i].id == id) { 
-                        d.splice(i, 1);
-                    } 
-                }
-                return d;
-            });
+    async getUserSuggestions() {
+        return authAxios.get('api/userSuggestions')
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+    }
+
+    async getUser(username) {
+        return authAxios.get('api/admin/user/' + username)
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
     }
     async getUsers() {
-        return fetch(contextPath + 'demo/data/users.json')
-            .then((res) => res.json())
-            .then((d) => d.data)
+        return authAxios.get('api/admin/users')
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+    }
+    async addUser(data) {
+        return authAxios.post('api/admin/user', data)
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+    }
+    async updateUser(data) {
+        return authAxios.put('api/admin/user', data)
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+    }
+    async deleteUser(username) {
+        return authAxios.delete('api/admin/user' + username, data)
+            .catch(err => Promise.reject(err))
     }
 };

@@ -2,61 +2,45 @@
 import { useLayout } from '@/layout/composables/layout';
 import { ref, computed } from 'vue';
 import AppConfig from '@/layout/AppConfig.vue';
-import { useMutation } from 'vue-query';
-import { authAxios, loginFn } from '@/api/authApi';
-import { createToast } from 'mosha-vue-toastify'
+import { loginFn } from '@/api/authApi';
 import 'mosha-vue-toastify/dist/style.css'
 import { useRouter } from 'vue-router';
 import useAuthStore from '@/stores/authStore';
+import { useToast } from 'primevue/usetoast';
 
 const { layoutConfig, contextPath } = useLayout();
-const email = ref('');
+const userid = ref('');
 const password = ref('');
 const checked = ref(false);
 
 const router = useRouter();
 const authStore = useAuthStore();
+const toast = useToast();
 
 const logoUrl = computed(() => {
     return `${contextPath}layout/images/${layoutConfig.darkTheme.value ? 'logo-white' : 'logo-dark'}.svg`;
 });
 
-const { mutate } = useMutation(
-    (credentials) => loginFn(credentials),
-    {
-        onError: (error) => {
-            if (Array.isArray((error).response.data.error)) {
-                (error).response.data.error.forEach((el) =>
-                    createToast(el.message, {
-                        position: 'top-right',
-                        type: 'warning',
-                    })
-                );
-            } else {
-                createToast((error).response.data.message, {
-                    position: 'top-right',
-                    type: 'danger',
-                });
-            }
-        },
-        onSuccess: (data) => {
-            authStore.setAuthUser(data.data)
-            router.push({ name: 'myprojects' });
-
-        },
-    }
-);
-
 const resetPassword = () => {
     password.value = ''
 }
 
-
 const submitClick = () => {
-    mutate({
-        email: email.value,
+    loginFn({
+        userid: userid.value,
         password: password.value,
-    });
+    }).then(
+        (data) => {
+            authStore.setAuthUser(data)
+            router.push({ name: 'projects' });
+        }
+    ).catch(
+        (error) => {
+            console.log(error)
+            toast.add({ severity: 'error', summary: 'Error Encountered', detail: error.message, life: 3000 });
+        }
+    )
+
     resetPassword();
 
 }
@@ -73,9 +57,9 @@ const submitClick = () => {
                 <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius: 53px">
 
                     <div>
-                        <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
-                        <InputText id="email1" type="text" placeholder="Email address" class="w-full md:w-30rem mb-5"
-                            style="padding: 1rem" v-model="email" />
+                        <label for="userid" class="block text-900 text-xl font-medium mb-2">Email/Username</label>
+                        <InputText id="userid" type="text" placeholder="userid address" class="w-full md:w-30rem mb-5"
+                            style="padding: 1rem" v-model="userid" />
 
                         <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>
                         <Password id="password1" v-model="password" placeholder="Password" :toggleMask="true"

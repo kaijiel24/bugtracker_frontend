@@ -35,15 +35,15 @@
             "role": "dev",
             "email": "rosfrank@gmail.com"
         },
-    {
-        "id": 8,
-        "name": "Colin Wang",
-        "username": "wangcolin",
-        "role": "pm",
-        "email": "colinwang@gmail.com"
-    }
+        {
+            "id": 8,
+            "name": "Colin Wang",
+            "username": "wangcolin",
+            "role": "pm",
+            "email": "colinwang@gmail.com"
+        }
     ],
-    "tickets" : [
+    "tickets": [
         {
             "id": 1,
             "name": "Project Page",
@@ -56,7 +56,7 @@
                 "name": "Maria Tucker"
             },
             "status": "wip",
-            "priority" : "high",
+            "priority": "high",
             "dateCreated": "2022-01-02",
             "dateUpdated": "2022-01-02"
         },
@@ -72,7 +72,7 @@
                 "name": "Zhang Wen Liu"
             },
             "status": "open",
-            "priority" : "medium",
+            "priority": "medium",
             "dateCreated": "2022-01-02",
             "dateUpdated": "2022-01-02"
         }

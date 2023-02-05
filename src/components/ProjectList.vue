@@ -1,105 +1,57 @@
 <script setup>
 import { FilterMatchMode, FilterOperator } from 'primevue/api';
 import ProjectStatusBadge from './badge/ProjectStatusBadge.vue';
-import { ref, onBeforeMount } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+
 const props = defineProps({
     rows: Number,
     projects: Array,
-    loading: Bool
+    loading: Boolean
 })
 
-const filters = ref(null);
-const statuses = ref(['Development', 'Production', 'Depreciated']);
+const filters = ref({ global: { value: null, matchMode: FilterMatchMode.CONTAINS } });
 
 const router = useRouter();
-
-const initFilters = () => {
-    filters.value = {
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-        'projectManager.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-        status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-    };
-};
 
 const rowClick = (e) => {
     console.log(e.data.id)
     router.push({ name: 'project', params: { id: e.data.id } })
-
 }
-
-onBeforeMount(() => {
-    initFilters();
-});
 </script>
 
 <template>
-    <div className="card">
-        <h2>Projects</h2>
-        <DataTable :value="props.projects" :paginator="true" class="p-datatable-gridlines" :rows="props.rows"
-            dataKey="id" :rowHover="true" @row-click="rowClick($event)" v-model:filters="filters" filterDisplay="menu"
-            :loading="props.loading" :filters="filters" responsiveLayout="scroll"
-            :globalFilterField="['name', 'projectManager.name', 'status']">
-            <template #header>
-                <div class="flex justify-content-between flex-column sm:flex-row">
-                    <Button type="button" icon="pi pi-filter-slash" label="Clear" class="p-button-outlined mb-2"
-                        @click="clearFilter1()" />
-                    <span class="p-input-icon-left mb-2">
-                        <i class="pi pi-search" />
-                        <InputText v-model="filters['global'].value" placeholder="Keyword Search" style="width: 100%" />
-                    </span>
-                </div>
+    <h2>Projects</h2>
+    <DataTable :value="props.projects" :rows="props.rows" dataKey="id" :rowHover="true"
+        @row-click="rowClick($event)" v-model:filters="filters" filterDisplay="menu" :loading="props.loading"
+        :filters="filters" responsiveLayout="scroll" :globalFilterField="['name', 'projectManager.name', 'status']">
+        <template #header>
+            <div class="flex justify-content-between flex-column sm:flex-row">
+                <span class="p-input-icon-left mb-2">
+                    <i class="pi pi-search" />
+                    <InputText v-model="filters['global'].value" placeholder="Keyword Search" style="width: 100%" />
+                </span>
+            </div>
+        </template>
+        <template #empty> No projects found. </template>
+        <template #loading> Loading projects data. Please wait. </template>
+        <Column field="name" header="Name" style="min-width: 12rem">
+            <template #body="{ data }">
+                {{ data.name }}
             </template>
-            <template #empty> No projects found. </template>
-            <template #loading> Loading projects data. Please wait. </template>
-            <Column field="name" header="Name" style="min-width: 12rem">
-                <template #body="{ data }">
-                    {{ data.name }}
-                </template>
-                <template #filter="{ filterModel }">
-                    <InputText type="text" v-model="filterModel.value" class="p-column-filter"
-                        placeholder="Search by name" />
-                </template>
-            </Column>
-            <Column header="Project Manager" filterField="projectManager.name" :showFilterMatchModes="false"
-                :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
-                <template #body="{ data }">
-                    <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{
-                        data.projectManager.name
-                    }}</span>
-                </template>
-                <template #filter="{ filterModel }">
-                    <div class="mb-3 text-bold">Agent Picker</div>
-                    <MultiSelect v-model="filterModel.value" :options="representatives" optionLabel="name"
-                        placeholder="Any" class="p-column-filter">
-                        <template #option="slotProps">
-                            <div class="p-multiselect-representative-option">
-                                <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{
-                                    slotProps.option.name
-                                }}</span>
-                            </div>
-                        </template>
-                    </MultiSelect>
-                </template>
-            </Column>
-            <Column field="status" header="Status" :filterMenuStyle="{ width: '14rem' }" style="min-width: 12rem">
-                <template #body="{ data }">
-                    <ProjectStatusBadge :value="data.status" :inline="true" />
-                </template>
-                <template #filter="{ filterModel }">
-                    <Dropdown v-model="filterModel.value" :options="statuses" placeholder="Any" class="p-column-filter"
-                        :showClear="true">
-                        <template #value="slotProps">
-                            <ProjectStatusBadge v-if="slotprops.value" :value="slotprops.value" :inline="true" />
-                            <span v-else>{{ slotProps.placeholder }}</span>
-                        </template>
-                        <template #option="slotProps">
-                            <ProjectStatusBadge v-if="slotProps.value" :value="slotProps.value" :inline="true" />
-                        </template>
-                    </Dropdown>
-                </template>
-            </Column>
-        </DataTable>
-    </div>
+        </Column>
+        <Column header="Project Manager" filterField="projectManager.name" :showFilterMatchModes="false"
+            :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
+            <template #body="{ data }">
+                <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{
+                    data.projectManager.name
+                }}</span>
+            </template>
+        </Column>
+        <Column field="status" header="Status" :filterMenuStyle="{ width: '14rem' }" style="min-width: 12rem">
+            <template #body="{ data }">
+                <ProjectStatusBadge :value="data.status" :inline="true" />
+            </template>
+        </Column>
+    </DataTable>
 </template>

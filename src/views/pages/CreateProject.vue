@@ -1,16 +1,16 @@
 <script setup>
 import UsersService from '@/service/UsersService';
+import { useToast } from 'primevue/usetoast';
 import { ref, onBeforeMount } from 'vue';
 
 const name = ref("");
 const description = ref("");
 const status = ref("dev");
 const members = ref(null);
-const statusButtonOptions = ref([{ name: 'Development', value: 'dev' }, { name: 'Production', value: 'prod'}]);
+const statusButtonOptions = ref([{ name: 'Development', value: 'dev' }, { name: 'Production', value: 'prod' }]);
 const membersSelectOptions = ref(null);
 const usersService = new UsersService();
-// TODO Replace user id when logged in
-const currentUserId = 1
+const toast = useToast()
 
 
 // TODO POST to database
@@ -19,11 +19,20 @@ const submitClick = () => {
         name: name,
         description: description,
         status: status,
-        members: members.value.map(a => a.id),
+        members: members.value.map(a => a.username),
     })
 };
 onBeforeMount(() => {
-    usersService.getUsersExcept(currentUserId).then((data) => (membersSelectOptions.value = data))
+    usersService.getOtherUsers()
+        .then((data) => (membersSelectOptions.value = data))
+        .catch((error) => {
+            toast.add({
+                severity: 'error',
+                summary: 'Error Encountered',
+                detail: error.message,
+                life: 3000
+            });
+        })
     console.log(membersSelectOptions)
 });
 
@@ -42,7 +51,8 @@ onBeforeMount(() => {
 
                     <div class="field col-12 md:col-6">
                         <label for="name">Status</label>
-                        <SelectButton v-model="status" :options="statusButtonOptions" optionLabel="name" optionValue="value"/>
+                        <SelectButton v-model="status" :options="statusButtonOptions" optionLabel="name"
+                            optionValue="value" />
                     </div>
                     <div class="field col-12">
                         <label for="description">Description</label>
@@ -50,9 +60,11 @@ onBeforeMount(() => {
                     </div>
                     <div class="field col-12">
                         <label for="name">Members</label>
-                        <MultiSelect v-model="members" :options="membersSelectOptions" optionLabel="name" placeholder="Select Members" :filter="true" dataKey="id">
+                        <MultiSelect v-model="members" :options="membersSelectOptions" optionLabel="name"
+                            placeholder="Select Members" :filter="true" dataKey="id">
                             <template #value="slotProps">
-                                <div class="inline-flex align-items-center py-1 px-2 bg-primary text-primary border-round mr-2" v-for="option of slotProps.value">
+                                <div class="inline-flex align-items-center py-1 px-2 bg-primary text-primary border-round mr-2"
+                                    v-for="option of slotProps.value">
                                     <div>{{ option.name }}</div>
                                 </div>
                                 <template v-if="!slotProps.value || slotProps.value.length === 0">

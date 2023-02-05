@@ -1,14 +1,24 @@
-const contextPath = import.meta.env.BASE_URL;
+import { authAxios } from "@/api/authApi"
 
 export default class TicketsService {
-    async getTickets() {
-        return fetch(contextPath + 'demo/data/tickets.json')
-            .then((res) => res.json())
-            .then((d) => d.data);
+    async getAssignedTickets() {
+        return authAxios.get('api/assignedtickets')
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+
+
+    }
+    async getMyTickets() {
+        return authAxios.get('api/mytickets')
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+
+
     }
 
     async getTicket(id) {
-        return fetch(contextPath + 'demo/data/ticket' + id + '.json')
-            .then((res) => res.json())
+        return authAxios.get(`api/ticket/${id}`)
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
     }
 }

@@ -14,10 +14,17 @@ const ticket = ref(null);
 const ticketsService = new TicketsService();
 const timeService = new TimeService();
 
-const newComment = ref('')
+const commentClick = (comment) => {
+    console.log(comment)
+}
 
 onBeforeMount(() => {
-    ticketsService.getTicket(props.id).then((data) => (ticket.value = data));
+    ticketsService.getTicket(props.id)
+        .then((data) => (ticket.value = data))
+        .catch((error) => {
+            toast.add({ severity: 'error', summary: 'Error Encountered', detail: error.message, life: 3000 });
+
+        })
 });
 </script>
 
@@ -38,7 +45,7 @@ onBeforeMount(() => {
             <TicketInfo :ticket="ticket" />
         </div>
         <div class="col-12 md:col-9">
-            <Comments :comments="ticket.comments" />
+            <Comments :comments="ticket.comments" @commentClick="commentClick" />
         </div>
     </div>
 </template>

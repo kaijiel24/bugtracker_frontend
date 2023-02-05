@@ -7,17 +7,16 @@ const props = defineProps({
     comments: Array
 })
 
+const emit = defineEmits([
+    'commentClick'
+])
+
 const array = ref([true])
 const comment = ref('')
 
 const authStore = useAuthStore()
 
 const user = ref('')
-
-const commentClick = () => {
-    console.log({ comment: comment.value })
-}
-
 
 onBeforeMount(() => {
     const authUser = authStore.getAuthUser()
@@ -34,7 +33,7 @@ onBeforeMount(() => {
             <CommentCard :comment="slotProps.item" />
         </template>
     </Timeline>
-    <div class="border-top-1 surround-face-border py-2"></div>
+    <Divider />
     <Timeline :value="array">
         <template #content="slotProps">
             <div class="surface-card pt-3 pl-3 p-4 shadow-2 border-round mb-5">
@@ -44,7 +43,7 @@ onBeforeMount(() => {
                         <Textarea v-model="comment" :autoResize="true" id="comment" rows="4" />
                     </div>
                 </div>
-                <Button label="Comment" @click="commentClick"></Button>
+                <Button label="Comment" @click="emit('commentClick', comment)"></Button>
             </div>
         </template>
     </Timeline>

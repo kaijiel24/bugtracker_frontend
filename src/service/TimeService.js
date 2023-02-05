@@ -49,10 +49,7 @@ export default class TimeService {
         return words.trim();
     };
 
-    moreThanAnHourAgo(date) {
-        const HOUR = 1000 * 60 * 60;
-        const anHourAgo = Date.now() - HOUR;
-
-        return date < anHourAgo;
+    beforeCurrentTime(date) {
+        return date < Date.now();
     };
 }

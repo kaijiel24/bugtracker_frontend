@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue'
-import { authAxios } from '../api/authApi';
 import TimeService from '@/service/TimeService';
 
 const timeService = new TimeService()
@@ -11,14 +10,6 @@ const useAuthStore = defineStore(
         const authUserJWT = ref(null)
         function setAuthUser(user) {
             this.authUserJWT = user;
-            console.log("set authuser")
-            if (!user) {
-                console.log("no user")
-                delete authAxios.defaults.headers.common['Authorization'];
-            } else {
-                console.log(user.token)
-                authAxios.defaults.headers.common['Authorization'] = 'Bearer ' + user.token;
-            }
         }
 
         function getAuthUser() {
@@ -26,8 +17,7 @@ const useAuthStore = defineStore(
                 return null
             }
             const expiry = Date.parse(this.authUserJWT.expire)
-            if (timeService.moreThanAnHourAgo(expiry)) {
-                console.log("jwt expired")
+            if (timeService.beforeCurrentTime(expiry)) {
                 this.authUserJWT = null
                 return null
             }

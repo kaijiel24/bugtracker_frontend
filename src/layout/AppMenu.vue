@@ -17,14 +17,14 @@ const model = ref([
     {
         label: 'Projects',
         items: [
-            { label: 'My Projects', icon: 'pi pi-fw pi-sitemap', to: '/pages/myprojects' },
+            { label: 'Projects', icon: 'pi pi-fw pi-sitemap', to: '/pages/projects' },
             { label: 'Create Project', icon: 'pi pi-fw pi-plus', to: '/pages/createproject' },
         ]
     },
     {
         label: 'Tickets',
         items: [
-            { label: 'My Tickets', icon: 'pi pi-fw pi-id-card', to: '/pages/mytickets' },
+            { label: 'Tickets', icon: 'pi pi-fw pi-ticket', to: '/pages/tickets' },
             { label: 'Create Ticket', icon: 'pi pi-fw pi-plus', to: '/pages/createticket' },
         ]
     },

@@ -1,14 +1,21 @@
-const contextPath = import.meta.env.BASE_URL;
+import { authAxios } from "@/api/authApi"
 
 export default class ProjectsService {
-    async getProjects() {
-        return fetch(contextPath + 'demo/data/projects.json')
-            .then((res) => res.json())
-            .then((d) => d.data);
+    async getAllProjects() {
+        return authAxios.get('api/allprojects')
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+    }
+
+    async getMyProjects() {
+        return authAxios.get('api/myprojects')
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
     }
 
     async getProject(id) {
-        return fetch(contextPath + 'demo/data/project' + id + '.json')
-            .then((res) => res.json())
+        return authAxios.get(`api/project/${id}`)
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
     }
 }
