@@ -8,7 +8,7 @@ export default class UsersService {
     }
 
     async getUser(username) {
-        return authAxios.get('api/admin/user/' + username)
+        return authAxios.get('api/user/' + username)
             .then((d) => d)
             .catch(err => Promise.reject(err))
     }

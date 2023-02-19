@@ -1,0 +1,134 @@
+p {
+   margin: 0px;
+   padding: 0px;
+}
+
+[data-space="true"]:before {
+  margin-right:1em;
+}
+
+[data-inline="false"]:before {
+  display:block;
+}
+
+[data-large="true"]:before {
+  font-size:1.5em;
+}
+[data-large="false"]:before {
+  font-size:1em;
+}
+[data-letters]:before {
+  content:attr(data-letters);
+  display:inline-block;
+  text-align:center;
+  border-radius:50%;
+  vertical-align:middle;
+  text-transform: uppercase;
+  width:2.5em;
+  height:2.5em;
+  line-height:2.5em;
+}
+[data-letters="a"]:before {
+    background: #B3E5FC;
+    color: #23547B;
+}
+[data-letters="b"]:before {
+    background: #ECCFFF;
+    color: #694382;
+}
+[data-letters="c"]:before {
+    background: #FFD8B2;
+    color: #805B36;
+}
+[data-letters="d"]:before {
+    background: #C8E6C9;
+    color: #256029;
+}
+[data-letters="e"]:before {
+    background: #FFCDD2;
+    color: #C63737;
+}
+[data-letters="f"]:before {
+    background: #FEEDAF;
+    color: #8A5340;
+}
+[data-letters="g"]:before {
+    background: #B3E5FC;
+    color: #23547B;
+}
+[data-letters="h"]:before {
+    background: #ECCFFF;
+    color: #694382;
+}
+[data-letters="i"]:before {
+    background: #FFD8B2;
+    color: #805B36;
+}
+[data-letters="j"]:before {
+    background: #C8E6C9;
+    color: #256029;
+}
+[data-letters="k"]:before {
+    background: #FFCDD2;
+    color: #C63737;
+}
+[data-letters="l"]:before {
+    background: #FEEDAF;
+    color: #8A5340;
+}
+[data-letters="m"]:before {
+    background: #B3E5FC;
+    color: #23547B;
+}
+[data-letters="n"]:before {
+    background: #ECCFFF;
+    color: #694382;
+}
+[data-letters="o"]:before {
+    background: #FFD8B2;
+    color: #805B36;
+}
+[data-letters="p"]:before {
+    background: #C8E6C9;
+    color: #256029;
+}
+[data-letters="q"]:before {
+    background: #FFCDD2;
+    color: #C63737;
+}
+[data-letters="r"]:before {
+    background: #FEEDAF;
+    color: #8A5340;
+}
+[data-letters="s"]:before {
+    background: #B3E5FC;
+    color: #23547B;
+}
+[data-letters="t"]:before {
+    background: #ECCFFF;
+    color: #694382;
+}
+[data-letters="u"]:before {
+    background: #FFD8B2;
+    color: #805B36;
+}
+[data-letters="v"]:before {
+    background: #C8E6C9;
+    color: #256029;
+}
+[data-letters="w"]:before {
+    background: #FFCDD2;
+    color: #C63737;
+}
+[data-letters="x"]:before {
+    background: #FEEDAF;
+    color: #8A5340;
+}
+[data-letters="y"]:before {
+    background: #C8E6C9;
+    color: #256029;
+}
+[data-letters="z"]:before {
+    background: #FFCDD2;
+    color: #C63737;
+}

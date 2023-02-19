@@ -17,7 +17,7 @@ export default class TimeService {
     };
 
     getRelativeTime(timeAgo) {
-        var seconds = Math.floor(Date.now() / 1000 - timeAgo),
+        var seconds = Math.floor((Date.now() - new Date(timeAgo).getTime()) / 1000),
             separator = this.locales.separator || ' ',
             words = this.locales.prefix + separator,
             interval = 0,
@@ -29,6 +29,8 @@ export default class TimeService {
                 minute: seconds / 60
             };
 
+
+        console.log(seconds)
         var distance = this.locales.seconds;
 
         for (var key in intervals) {

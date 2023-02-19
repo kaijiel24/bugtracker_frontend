@@ -21,10 +21,9 @@ const rowClick = (e) => {
 </script>
 
 <template>
-    <h2>Projects</h2>
-    <DataTable :value="props.projects" :rows="props.rows" dataKey="id" :rowHover="true"
-        @row-click="rowClick($event)" v-model:filters="filters" filterDisplay="menu" :loading="props.loading"
-        :filters="filters" responsiveLayout="scroll" :globalFilterField="['name', 'projectManager.name', 'status']">
+    <DataTable :value="props.projects" :rows="props.rows" dataKey="id" :rowHover="true" @row-click="rowClick($event)"
+        v-model:filters="filters" filterDisplay="menu" :loading="props.loading" :filters="filters"
+        responsiveLayout="scroll" :globalFilterField="['name', 'projectManager', 'status']">
         <template #header>
             <div class="flex justify-content-between flex-column sm:flex-row">
                 <span class="p-input-icon-left mb-2">
@@ -40,11 +39,11 @@ const rowClick = (e) => {
                 {{ data.name }}
             </template>
         </Column>
-        <Column header="Project Manager" filterField="projectManager.name" :showFilterMatchModes="false"
+        <Column header="Project Manager" filterField="projectManager" :showFilterMatchModes="false"
             :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
             <template #body="{ data }">
                 <span style="margin-left: 0.5em; vertical-align: middle" class="image-text">{{
-                    data.projectManager.name
+                    data.projectManager
                 }}</span>
             </template>
         </Column>

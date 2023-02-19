@@ -64,7 +64,12 @@ const onRowEditSave = (event) => {
     let { newData, index } = event;
     userService.updateUser(newData)
         .then((data) => {
+            console.log(index)
+            console.log(data)
             props.users[index] = data
+            // props.users.splice(index, 1)
+            // props.users.push(data)
+            console.log(props.users)
             toast.add({
                 severity: 'success',
                 summary: 'Successful',
@@ -87,8 +92,7 @@ const onRowEditSave = (event) => {
     <div className="card">
         <h2>Users</h2>
         <DataTable :value="props.users" editMode="row" dataKey="username" v-model:editingRows="editingRows"
-            @row-edit-save="onRowEditSave" sortField="username" :sortOrder="1" v-model:filters="filters"
-            responsiveLayout="stack" breakpoint="1140px">
+            @row-edit-save="onRowEditSave" v-model:filters="filters" responsiveLayout="stack" breakpoint="1140px">
             <template #header>
                 <div class="flex justify-content-between flex-column sm:flex-row">
                     <span class="p-input-icon-left mb-2">

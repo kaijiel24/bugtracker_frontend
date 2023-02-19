@@ -26,12 +26,15 @@ onBeforeMount(() => {
 </script>
 
 <template>
-    <div v-if="project" className="grid">
-        <div class="col-12">
+    <div v-if="project" class="grid ">
+        <div class="col-12 md:col-3">
             <ProjectInfo :project="project" />
         </div>
-        <div class="col-12">
-            <TicketList :rows="5" :tickets="project.tickets" />
+        <div class="col-12 md:col-9">
+            <div class="card">
+                <h2>Tickets</h2>
+                <TicketList :rows="5" :tickets="project.tickets" />
+            </div>
         </div>
     </div>
 </template>

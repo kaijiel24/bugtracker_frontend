@@ -18,4 +18,10 @@ export default class ProjectsService {
             .then((d) => d)
             .catch(err => Promise.reject(err))
     }
+
+    async addProject(data) {
+        return authAxios.put('api/project', data)
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+    }
 }

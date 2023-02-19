@@ -58,7 +58,7 @@ const submitClick = () => {
 
                     <div>
                         <label for="userid" class="block text-900 text-xl font-medium mb-2">Email/Username</label>
-                        <InputText id="userid" type="text" placeholder="userid address" class="w-full md:w-30rem mb-5"
+                        <InputText id="userid" type="text" placeholder="Username/Email" class="w-full md:w-30rem mb-5"
                             style="padding: 1rem" v-model="userid" />
 
                         <label for="password1" class="block text-900 font-medium text-xl mb-2">Password</label>

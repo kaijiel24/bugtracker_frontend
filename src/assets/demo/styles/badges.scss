@@ -1,6 +1,7 @@
 .role-badge,
 .project-status-badge,
 .ticket-status-badge,
+.ticket-type-badge,
 .ticket-priority-badge {
     border-radius: var(--border-radius);
     padding: .25em .5rem;
@@ -32,17 +33,17 @@
 }
 
 .project-status-badge {
-    &.status-production {
+    &.status-prod {
         background: #C8E6C9;
         color: #256029;
     }
 
-    &.status-depreciated {
+    &.status-depr {
         background: #FFCDD2;
         color: #C63737;
     }
 
-    &.status-development {
+    &.status-dev {
         background: #FEEDAF;
         color: #8A5340;
     }
@@ -64,9 +65,9 @@
         color: #8A5340;
     }
 }
-
 .ticket-priority-badge {
     &.priority-high {
+
         background: #FFCDD2;
         color: #C63737;
     }
@@ -79,3 +80,22 @@
         color: #8A5340;
     }
 }
+.ticket-type-badge {
+    &.type-bug {
+        background: #FFCDD2;
+        color: #C63737;
+    }
+    &.type-feature {
+        background: #C8E6C9;
+        color: #256029;
+    }
+    &.type-doc {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+    &.type-other {
+        background: #FEEDAF;
+        color: #8A5340;
+    }
+}
+

@@ -7,15 +7,33 @@ import { ref, onBeforeMount } from 'vue';
 const toast = useToast()
 const projectsService = new ProjectsService();
 
+
 const myProjects = ref(null);
 const allProjects = ref(null);
 const myLoading = ref(true)
 const allLoading = ref(true)
 
+const tabchanged = (event) => {
+    console.log(event)
+    if (event.index == 1 && allLoading.value) {
+        projectsService.getAllProjects()
+            .then((data) => (allProjects.value = data))
+            .catch((error) => {
+                toast.add({
+                    severity: 'error',
+                    summary: 'Error Encountered',
+                    detail: error.message,
+                    life: 3000
+                });
+            })
+            .finally(() => (allLoading.value = false))
+    }
+}
+
 
 onBeforeMount(() => {
     projectsService.getMyProjects()
-        .then((data) => (myProjects.value = data))
+        .then((data) => { myProjects.value = data })
         .catch((error) => {
             toast.add({
                 severity: 'error',
@@ -26,17 +44,6 @@ onBeforeMount(() => {
         })
         .finally(() => (myLoading.value = false))
 
-    projectsService.getAllProjects()
-        .then((data) => (allProjects.value = data))
-        .catch((error) => {
-            toast.add({
-                severity: 'error',
-                summary: 'Error Encountered',
-                detail: error.message,
-                life: 3000
-            });
-        })
-        .finally(() => (allLoading.value = false))
 
 });
 
@@ -44,15 +51,15 @@ onBeforeMount(() => {
 
 <template>
     <div class="card">
-    <h2>Projects</h2>
-    <TabView>
-        <TabPanel header="My Projects">
-            <ProjectList :loading="myLoading" :rows="10" :projects="myProjects" />
-        </TabPanel>
-        <TabPanel header="All Projects">
-            <ProjectList :loading="allLoading" :rows="10" :projects="allProjects" />
-        </TabPanel>
-    </TabView>
+        <h2>Projects</h2>
+        <TabView @tab-change="tabchanged">
+            <TabPanel header="My Projects">
+                <ProjectList :loading="myLoading" :rows="10" :projects="myProjects" />
+            </TabPanel>
+            <TabPanel header="All Projects">
+                <ProjectList :loading="allLoading" :rows="10" :projects="allProjects" />
+            </TabPanel>
+        </TabView>
     </div>
 </template>
 

@@ -13,6 +13,7 @@ onBeforeMount(() => {
     usersService.getUsers()
         .then((data) => {
             users.value = data
+            console.log(users.value)
         })
         .catch((error) => {
             toast.add({ 
