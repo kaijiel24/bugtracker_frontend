@@ -12,8 +12,8 @@ const toggle = (event) => {
 </script>
 
 <template>
-    <div class="flex align-items-center pb-2 flex-wrap min-w-2 max-w-2">
-        <div class="text-500 w-full border-bottom-1 surface-border font-medium mb-2">Members</div>
+    <div class="flex flex-grow-1 align-items-center pb-2 flex-wrap min-w-2 max-w-2">
+        <div class="text-500 w-full border-bottom-1 surface-border font-medium mb-2"><slot></slot></div>
         <div v-if="props.users">
             <Username :value="props.users[0]" />
             <Username v-if="props.users.length > 1" :value="props.users[1]" />
@@ -29,6 +29,6 @@ const toggle = (event) => {
                 </OverlayPanel>
             </div>
         </div>
-        <div class="text-900 w-full mb-2" v-else>No assignees yet</div>
+        <div class="text-900 w-full mb-2" v-else>No <slot></slot> yet</div>
     </div>
 </template>

@@ -24,4 +24,11 @@ export default class ProjectsService {
             .then((d) => d)
             .catch(err => Promise.reject(err))
     }
+
+    async getProjectSuggestions() {
+        return authAxios.get('api/projectSuggestions')
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+    }
+
 }

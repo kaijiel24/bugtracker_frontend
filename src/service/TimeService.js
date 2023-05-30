@@ -29,8 +29,6 @@ export default class TimeService {
                 minute: seconds / 60
             };
 
-
-        console.log(seconds)
         var distance = this.locales.seconds;
 
         for (var key in intervals) {

@@ -48,4 +48,10 @@ export default class TicketsService {
             .then((d) => d)
             .catch(err => Promise.reject(err))
     }
+
+    async deleteComment(id) {
+        return authAxios.delete(`api/comment/${id}`)
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+    }
 }

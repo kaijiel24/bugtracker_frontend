@@ -12,7 +12,7 @@ const text = computed(() => {
     } else if (props.value == 'feature') {
         return 'Feature Request'
     } else if (props.value == 'doc') {
-        return 'Documentation Request'
+        return 'Doc Request'
     } else if (props.value == 'other') {
         return 'Other Issue'
     }

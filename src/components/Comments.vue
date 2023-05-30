@@ -1,11 +1,12 @@
 <script setup>
-import CommentCard from '@/components/CommentCard.vue'
+import CommentCard from './CommentCard.vue'
 import { ref, onBeforeMount } from 'vue'
 import useAuthStore from '@/stores/authStore'
 import { useToast } from 'primevue/usetoast';
 import TicketsService from '../service/TicketsService';
 
 const props = defineProps({
+    ticketid: Number,
     comments: Array
 })
 
@@ -18,9 +19,9 @@ const ticketsService = new TicketsService();
 
 const user = ref('')
 
-const commentClick = () => {
+const addClick = () => {
     ticketsService.addComment({
-        ticketid: props.id,
+        ticketid: props.ticketid,
         text: comment.value
     })
         .then((data) => {
@@ -44,6 +45,32 @@ const commentClick = () => {
         })
 }
 
+const deleteClick = (id) => {
+    ticketsService.deleteComment(id)
+        .then((data) => {
+            // Delete comment from comments by id
+            const objWithIdIndex = props.comments.findIndex((obj) => obj.id === data.id);
+            if (objWithIdIndex > -1) {
+                props.comments.splice(objWithIdIndex, 1);
+            }
+
+            toast.add({
+                severity: 'success',
+                summary: 'Successful',
+                detail: `Comment deleted`,
+                life: 5000
+            });
+        })
+        .catch((error) => {
+            toast.add({
+                severity: 'error',
+                summary: 'Error Encountered',
+                detail: error.message,
+                life: 5000
+            });
+        })
+}
+
 onBeforeMount(() => {
     const authUser = authStore.getAuthUser()
     user.value = authUser.user.username
@@ -54,7 +81,7 @@ onBeforeMount(() => {
 <template>
     <Timeline :value="props.comments">
         <template #content="slotProps">
-            <CommentCard :comment="slotProps.item" />
+            <CommentCard :comment="slotProps.item" @delete="deleteClick" />
         </template>
         <template #marker="slotProps">
             <p :data-letters="slotProps.item.commenter[0]" :data-large="true"></p>
@@ -73,7 +100,7 @@ onBeforeMount(() => {
                         <Textarea v-model="comment" :autoResize="true" id="comment" rows="4" />
                     </div>
                 </div>
-                <Button label="Comment" @click="commentClick"></Button>
+                <Button label="Comment" @click="addClick"></Button>
             </div>
         </template>
     </Timeline>
