@@ -26,10 +26,6 @@ const openEdit = () => {
     displayCloseTicketConfirmation.value = true;
 };
 
-const closeConfirmation = () => {
-    displayCloseTicketConfirmation.value = false;
-};
-
 const displayCloseicketConfirmation = ref(false);
 const openConfirmation = () => {
     displayCloseTicketConfirmation.value = true;

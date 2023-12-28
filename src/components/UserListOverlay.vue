@@ -21,7 +21,7 @@ const toggle = (event) => {
                 <Button label="More" icon="pi pi-angle-down" class="p-button-sm p-button-text p-button-secondary"
                     @click="toggle" />
                 <OverlayPanel ref="op">
-                    <ScrollPanel style="width: 100%; height: 200px" class="">
+                    <ScrollPanel style="width: 100%" class="">
                         <div v-for="user in props.users.slice(2)">
                             <Username :value="user" />
                         </div>
