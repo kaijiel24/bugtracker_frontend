@@ -7,6 +7,12 @@ export default class UsersService {
             .catch(err => Promise.reject(err))
     }
 
+    async getAssigneeSuggestions(id) {
+        return authAxios.get('api/assigneeSuggestions/' + id)
+            .then((d) => d)
+            .catch(err => Promise.reject(err))
+    }
+
     async getUser(username) {
         return authAxios.get('api/user/' + username)
             .then((d) => d)

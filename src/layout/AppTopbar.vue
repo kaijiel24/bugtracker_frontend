@@ -89,7 +89,7 @@ const isOutsideClicked = (event) => {
             </button>
             <button @click="onLogoutClick()" class="p-link layout-topbar-button">
                 <i class="pi pi-sign-out"></i>
-                <span>Settings</span>
+                <span>Logout</span>
             </button>
         </div>
     </div>

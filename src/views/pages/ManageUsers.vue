@@ -16,11 +16,11 @@ onBeforeMount(() => {
             console.log(users.value)
         })
         .catch((error) => {
-            toast.add({ 
+            toast.add({
                 severity: 'error',
                 summary: 'Error Encountered',
                 detail: error.message,
-                life: 3000 
+                life: 3000
             });
         })
         .finally(() => {

@@ -24,18 +24,17 @@ const submitClick = () => {
         description: description.value,
         status: status.value,
         members: members.value.map(a => a.username),
+    }) .then((data) => {
+        router.push({ name: "project", params: { id: data } })
     })
-        .then((d) => {
-            router.push({ name: 'projects' })
-        })
-        .catch((error) => {
-            toast.add({
-                severity: 'error',
-                summary: 'Error Encountered',
-                detail: error.message,
-                life: 3000
-            });
-        })
+    .catch((error) => {
+        toast.add({
+            severity: 'error',
+            summary: 'Error Encountered',
+            detail: error.message,
+            life: 3000
+        });
+    })
 };
 onBeforeMount(() => {
     usersService.getUserSuggestions()
